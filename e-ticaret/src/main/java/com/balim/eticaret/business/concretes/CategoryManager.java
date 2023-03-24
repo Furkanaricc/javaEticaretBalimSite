@@ -2,12 +2,11 @@ package com.balim.eticaret.business.concretes;
 
 import com.balim.eticaret.business.abstracts.CategoryService;
 import com.balim.eticaret.business.request.CreateCategoryRequest;
-import com.balim.eticaret.business.response.GetAllCategoryResponse;
+import com.balim.eticaret.business.request.UpdateCategoryRequest;
 import com.balim.eticaret.business.response.GetByIdCategoryResponse;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
+
 public class CategoryManager implements CategoryService {
     @Override
     public void add(CreateCategoryRequest createCategoryRequest) {
@@ -15,23 +14,17 @@ public class CategoryManager implements CategoryService {
     }
 
     @Override
-    public void upDate(CreateCategoryRequest createCategoryRequest) {
+    public void upDate(UpdateCategoryRequest createCategoryRequest) {
 
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int categoryId, String categoryName) {
 
-    }
-
-    @Override
-    public List<GetAllCategoryResponse> getAll() {
-        return null;
     }
 
     @Override
     public List<GetByIdCategoryResponse> getById(int id, String categoryName) {
         return null;
     }
-
 }

@@ -2,7 +2,8 @@ package com.balim.eticaret.business.concretes;
 
 import com.balim.eticaret.business.abstracts.OrderService;
 import com.balim.eticaret.business.request.CreateOrderRequest;
-import com.balim.eticaret.business.response.GetAllCategoryResponse;
+import com.balim.eticaret.business.request.UpdateOrderRequest;
+import com.balim.eticaret.business.response.GetAllOrderResponse;
 import com.balim.eticaret.business.response.GetByIdCategoryResponse;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class OrderManager implements OrderService {
     }
 
     @Override
-    public void upDate(CreateOrderRequest createOrderRequest) {
+    public void upDate(UpdateOrderRequest createOrderRequest) {
 
     }
 
@@ -25,7 +26,7 @@ public class OrderManager implements OrderService {
     }
 
     @Override
-    public List<GetAllCategoryResponse> getAll() {
+    public List<GetAllOrderResponse> getAll() {
         return null;
     }
 

@@ -2,6 +2,7 @@ package com.balim.eticaret.business.concretes;
 
 import com.balim.eticaret.business.abstracts.UserService;
 import com.balim.eticaret.business.request.CreateUserRequest;
+import com.balim.eticaret.business.request.UpdateUserRequest;
 import com.balim.eticaret.business.response.GetAllUserResponse;
 import com.balim.eticaret.business.response.GetByIdUserResponse;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class UserManager implements UserService {
     }
 
     @Override
-    public void upDate(CreateUserRequest createUserRequest) {
+    public void upDate(UpdateUserRequest createUserRequest) {
 
     }
 

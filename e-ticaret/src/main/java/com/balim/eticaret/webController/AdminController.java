@@ -2,18 +2,23 @@ package com.balim.eticaret.webController;
 
 import com.balim.eticaret.business.abstracts.AdminService;
 import java.util.*;
+
+import com.balim.eticaret.business.request.CreateAdminRequest;
+import com.balim.eticaret.business.request.UpdateAdminRequest;
 import com.balim.eticaret.business.response.GetAllAdminResponse;
 import com.balim.eticaret.business.response.GetByIdAdminResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("api/admin")
 public class AdminController {
 
    private AdminService adminService;
+
+   private HttpStatus code;
 
 
     public AdminController(AdminService adminService){
@@ -24,9 +29,23 @@ public class AdminController {
         return AdminService.getAll();
     }
     @GetMapping("/{adminName}")
-    public GetByIdAdminResponse getById(@PathVariable String adminName){
+    public GetByIdAdminResponse getById(@PathVariable String adminName,String eMail){
 
-        return adminService.getById(adminName);
+        return (GetByIdAdminResponse) adminService.getById(adminName,eMail);
 
+    }
+    @PostMapping()
+    @ResponseStatus(code=HttpStatus.CREATED)
+    public void add(@RequestBody() @Valid() CreateAdminRequest createAdminRequest){
+        this.adminService.add(createAdminRequest);
+    }
+    @PutMapping()
+    public void update(@RequestBody() UpdateAdminRequest updateAdminRequest){
+        this.adminService.upDate(updateAdminRequest);
+    }
+    @DeleteMapping("/adminName-eMail")
+    public void delete(@PathVariable String adminName,String eMail){
+
+        this.adminService.delete(adminName, eMail );
     }
 }

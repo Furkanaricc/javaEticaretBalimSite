@@ -3,21 +3,22 @@ package com.balim.eticaret.business.abstracts;
 import com.balim.eticaret.business.request.CreateAdminRequest;
 import com.balim.eticaret.business.request.UpdateAdminRequest;
 import com.balim.eticaret.business.response.GetAllAdminResponse;
-import com.balim.eticaret.business.response.GetAllCategoryResponse;
+
 import com.balim.eticaret.business.response.GetByIdAdminResponse;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-
+@Service
 public interface AdminService {
     void add(CreateAdminRequest createAdminRequest);
-    void upDate(UpdateAdminRequest updateProductResponse);
-    void delete (int id);
+    void upDate(UpdateAdminRequest updateAdminRequest);
+    void delete (String adminName,String eMail);
 
     static List<GetAllAdminResponse> getAll() {
         return null;
     }
 
-    List<GetByIdAdminResponse>getById(int id, String adminName, String eMail);
+    List<GetByIdAdminResponse>getById( String adminName, String eMail);
 
 }
