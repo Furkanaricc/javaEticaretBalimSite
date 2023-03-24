@@ -1,5 +1,5 @@
 package com.balim.eticaret.entitiy;
-
+import javax.persistence.CascadeType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,17 +18,15 @@ public class Product {
     @Column
     String name ;
     //Category table dan ıd çekiyorum.
-    @ManyToOne
-    @JoinColumn(name = "category_ıd")
+    @ManyToOne (cascade = CascadeType.REMOVE)
+    @JoinColumn(name="categoryId")
     Category category;
-
     @Column
     String brand;
     @Column
     int stock;
     @Column
     double price;
-
     @Column
     String description;
 
