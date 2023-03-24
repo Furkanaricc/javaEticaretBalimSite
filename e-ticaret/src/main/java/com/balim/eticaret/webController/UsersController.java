@@ -20,7 +20,7 @@ public class UsersController {
     }
     @GetMapping
     List<GetAllUserResponse> getAll(){
-        return  UserService.getAll();
+        return  userService.getAll();
     }
     @GetMapping("{/User-id-name-ad-mail}")
     GetByIdUserResponse getById(@PathVariable int id,String firstName,String secondName,String userAddress,String Email){

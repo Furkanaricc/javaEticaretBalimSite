@@ -1,6 +1,7 @@
 package com.balim.eticaret.webController;
 
 import com.balim.eticaret.business.abstracts.ProductService;
+import com.balim.eticaret.business.concretes.ProductManager;
 import com.balim.eticaret.business.request.CreateCategoryRequest;
 import com.balim.eticaret.business.request.CreateProductRequest;
 import com.balim.eticaret.business.request.UpdateCategoryRequest;
@@ -23,7 +24,7 @@ public class ProductController {
     }
     @GetMapping
     List<GetAllProductResponse>getAll(){
-        return ProductService.getAll();
+        return productService.getAll();
     }
     @GetMapping({"{/id}"})
     GetByIdProductResponse getById(@PathVariable int id){

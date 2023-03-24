@@ -7,7 +7,7 @@ import com.balim.eticaret.business.response.GetByIdCategoryResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-@Service
+
 public interface OrderService {
     void add (CreateOrderRequest createOrderRequest);
     void upDate(UpdateOrderRequest createOrderRequest);

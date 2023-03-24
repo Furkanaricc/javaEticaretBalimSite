@@ -24,8 +24,9 @@ public class ProductManager implements ProductService {
     public void delete(int id) {
 
     }
+
     @Override
-    public List<GetAllProductResponse> getAll() {
+    public List<GetAllProductResponse> getAll(){
         return null;
     }
 

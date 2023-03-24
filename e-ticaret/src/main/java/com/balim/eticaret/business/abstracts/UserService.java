@@ -12,9 +12,8 @@ public interface UserService  {
     void delete (int id);
     void upDate(UpdateUserRequest createUserRequest);
 
-    static List<GetAllUserResponse> getAll() {
-        return null;
-    }
+
+    List<GetAllUserResponse> getAll();
 
     List<GetByIdUserResponse>getById(int id, String firstName, String secondName, String userAddress, String Email);
 

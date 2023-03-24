@@ -7,17 +7,17 @@ import com.balim.eticaret.business.response.GetByIdProductResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-@Service
+
 public interface ProductService {
 
     void add(CreateProductRequest createProductRequest);
     void upDate(UpdateProductRequest updateProductResponse);
     void delete (int id);
 
-    static List<GetAllProductResponse> getAll() {
-        return null;
-    }
 
+
+
+   List<GetAllProductResponse> getAll();
 
     List<GetByIdProductResponse>getById(int id);
 

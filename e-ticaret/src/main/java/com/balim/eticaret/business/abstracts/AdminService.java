@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-@Service
+
 public interface AdminService {
     void add(CreateAdminRequest createAdminRequest);
     void upDate(UpdateAdminRequest updateAdminRequest);

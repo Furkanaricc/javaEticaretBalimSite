@@ -4,9 +4,10 @@ import com.balim.eticaret.business.abstracts.CategoryService;
 import com.balim.eticaret.business.request.CreateCategoryRequest;
 import com.balim.eticaret.business.request.UpdateCategoryRequest;
 import com.balim.eticaret.business.response.GetByIdCategoryResponse;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class CategoryManager implements CategoryService {
     @Override
     public void add(CreateCategoryRequest createCategoryRequest) {
