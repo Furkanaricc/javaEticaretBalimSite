@@ -15,8 +15,9 @@ import javax.validation.Valid;
 import java.util.*;
 
 @RestController
+@RequestMapping("/product")
 public class ProductController {
-    private ProductService productService;
+    private final ProductService productService;
     private HttpStatus code;
 
     public ProductController(ProductService productService){
@@ -26,7 +27,7 @@ public class ProductController {
     List<GetAllProductResponse>getAll(){
         return productService.getAll();
     }
-    @GetMapping({"{/id}"})
+    @GetMapping({"/{id}"})
     GetByIdProductResponse getById(@PathVariable int id){
         return (GetByIdProductResponse) productService.getById(id);
     }

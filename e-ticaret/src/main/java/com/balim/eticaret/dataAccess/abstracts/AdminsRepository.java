@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdminsRepository extends JpaRepository<Admin,Integer> {
     //Aynı isimden ürün olup olmadığını kontrol eder.
-    boolean existsByName(String name); //spring jpa keywords
+    boolean existsByAdminName(String name); //spring jpa keywords
 
 }

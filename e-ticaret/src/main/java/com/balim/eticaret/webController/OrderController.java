@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.*;
 
+@RestController
+@RequestMapping("/order")
 public class OrderController {
-    private OrderService orderService;
+    private final OrderService orderService;
     private HttpStatus code;
 
     private OrderController (OrderService orderService){

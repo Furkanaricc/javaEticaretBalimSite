@@ -21,7 +21,7 @@ public class User {
     @Column
     String secondName;
     @Column
-    String userAdress;
+    String userAddress;
     @Column
     String eMail;
     @Column

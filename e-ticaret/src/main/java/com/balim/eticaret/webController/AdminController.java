@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @RequestMapping("api/admin")
 public class AdminController {
 
-   private AdminService adminService;
+   private final AdminService adminService;
 
    private HttpStatus code;
 

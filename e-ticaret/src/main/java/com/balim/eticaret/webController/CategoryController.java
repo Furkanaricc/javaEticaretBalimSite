@@ -15,10 +15,11 @@ import javax.validation.Valid;
 import java.util.*;
 
 @RestController
+@RequestMapping("/category")
 public class CategoryController {
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
     private HttpStatus code;
-    @Autowired
+//    @Autowired
     public CategoryController ( CategoryService categoryService) {
         this.categoryService=categoryService;
     }
