@@ -15,17 +15,17 @@ import javax.validation.Valid;
 import java.util.*;
 
 @RestController
+@RequestMapping("/category")
 public class CategoryController {
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
     private HttpStatus code;
-    @Autowired
+   // @Autowired
     public CategoryController ( CategoryService categoryService) {
         this.categoryService=categoryService;
     }
     @GetMapping()
-    List<GetAllCategoryResponse>getAll(){
-      return   CategoryService.getAll();
-    }
+    List<GetAllCategoryResponse>getAll(){return CategoryService.getAll();}
+
     @GetMapping("/{categoryId}")
     public GetByIdCategoryResponse getById(@PathVariable int categoryId,String categoryName){
         return (GetByIdCategoryResponse) categoryService.getById(categoryId,categoryName);

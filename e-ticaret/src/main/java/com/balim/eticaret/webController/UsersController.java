@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.*;
 @RestController
+@RequestMapping("/users")
 public class UsersController {
-    private UserService userService;
+    private final UserService userService;
     private HttpStatus code;
 
     public UsersController (UserService userService){
@@ -23,7 +24,8 @@ public class UsersController {
         return  userService.getAll();
     }
     @GetMapping("{/User-id-name-ad-mail}")
-    GetByIdUserResponse getById(@PathVariable int id,String firstName,String secondName,String userAddress,String Email){
+    GetByIdUserResponse getById(
+            @PathVariable int id,String firstName,String secondName,String userAddress,String Email){
         return (GetByIdUserResponse) userService.getById(id, firstName, secondName, userAddress, Email);
     }
     @PostMapping()

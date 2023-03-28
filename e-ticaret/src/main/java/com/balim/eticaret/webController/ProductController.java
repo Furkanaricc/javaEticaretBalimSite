@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.util.*;
 
 @RestController
+@RequestMapping("/product")
 public class ProductController {
     private ProductService productService;
     private HttpStatus code;

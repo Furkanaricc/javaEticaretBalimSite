@@ -22,7 +22,7 @@ public class Order {
    @Column
     int piece;
    @ManyToOne
-    @JoinColumn(name = "address")
+    @JoinColumn(name = "userAddress")
     User user;
     @Column
     int shippingCost;
