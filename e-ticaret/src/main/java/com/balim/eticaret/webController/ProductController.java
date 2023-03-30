@@ -1,10 +1,7 @@
 package com.balim.eticaret.webController;
 
 import com.balim.eticaret.business.abstracts.ProductService;
-import com.balim.eticaret.business.concretes.ProductManager;
-import com.balim.eticaret.business.request.CreateCategoryRequest;
 import com.balim.eticaret.business.request.CreateProductRequest;
-import com.balim.eticaret.business.request.UpdateCategoryRequest;
 import com.balim.eticaret.business.request.UpdateProductRequest;
 import com.balim.eticaret.business.response.GetAllProductResponse;
 import com.balim.eticaret.business.response.GetByIdProductResponse;
@@ -31,7 +28,7 @@ public class ProductController {
     GetByIdProductResponse getById(@PathVariable int id){
         return (GetByIdProductResponse) productService.getById(id);
     }
-    @PostMapping()
+    @PostMapping("/add")
     @ResponseStatus(code= HttpStatus.CREATED)
     public void add(@RequestBody() @Valid()CreateProductRequest createProductRequest){
         this.productService.add(createProductRequest);
