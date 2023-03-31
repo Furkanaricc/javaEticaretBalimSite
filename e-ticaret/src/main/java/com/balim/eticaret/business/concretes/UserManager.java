@@ -5,35 +5,59 @@ import com.balim.eticaret.business.request.CreateUserRequest;
 import com.balim.eticaret.business.request.UpdateUserRequest;
 import com.balim.eticaret.business.response.GetAllUserResponse;
 import com.balim.eticaret.business.response.GetByIdUserResponse;
+import com.balim.eticaret.core.utilities.mappers.ModelMapperService;
+import com.balim.eticaret.dataAccess.abstracts.UsersRepository;
+import com.balim.eticaret.entitiy.User;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class UserManager implements UserService {
+
+    private ModelMapperService modelMapperService;
+    private UsersRepository usersRepository;
 
     @Override
     public void add(CreateUserRequest createUserRequest) {
-
+        User user = this.modelMapperService.forRequest().map(createUserRequest,User.class);
+this.usersRepository.save(user);
     }
 
     @Override
     public void delete(int id) {
+        this.usersRepository.deleteById(id);
 
     }
 
     @Override
-    public void upDate(UpdateUserRequest createUserRequest) {
+    public void upDate(UpdateUserRequest updateUserRequest) {
+        User user=this.modelMapperService.forRequest().map(updateUserRequest,User.class);
+        this.usersRepository.save(user);
 
     }
 
     @Override
     public List<GetAllUserResponse> getAll() {
-        return null;
+        List<User>users = usersRepository.findAll();
+        List<GetAllUserResponse>getAllUserResponses = new ArrayList<GetAllUserResponse>();
+        List<GetAllUserResponse>userResponses=(List<GetAllUserResponse>)users.stream()
+                .map(user -> this.modelMapperService.forResponse().map(user,GetAllUserResponse.class))
+                .collect(Collectors.toList());
+
+        return userResponses;
     }
 
     @Override
     public List<GetByIdUserResponse> getById(int id, String firstName, String secondName, String userAddress, String Email) {
-        return null;
+        User user = this.usersRepository.findById(id).orElseThrow();
+        GetByIdUserResponse response =
+        this.modelMapperService.forResponse().map(user,GetByIdUserResponse.class);
+
+        return (List<GetByIdUserResponse>) response;
     }
 }

@@ -26,12 +26,12 @@ public class AdminController {
     }
     @GetMapping()
     List<GetAllAdminResponse>getAll(){
-        return AdminService.getAll();
+        return adminService.getAll();
     }
     @GetMapping("/{adminName}")
-    public GetByIdAdminResponse getById(@PathVariable String adminName,String eMail){
+    public GetByIdAdminResponse getById(@PathVariable int adminId){
 
-        return (GetByIdAdminResponse) adminService.getById(adminName,eMail);
+        return (GetByIdAdminResponse) adminService.getById(adminId);
 
     }
     @PostMapping()
@@ -44,8 +44,8 @@ public class AdminController {
         this.adminService.upDate(updateAdminRequest);
     }
     @DeleteMapping("/adminName-eMail")
-    public void delete(@PathVariable String adminName,String eMail){
+    public void delete(@PathVariable int adminId){
 
-        this.adminService.delete(adminName, eMail );
+        this.adminService.delete(adminId);
     }
 }

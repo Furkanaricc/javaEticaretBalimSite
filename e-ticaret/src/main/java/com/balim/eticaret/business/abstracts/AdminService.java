@@ -5,7 +5,6 @@ import com.balim.eticaret.business.request.UpdateAdminRequest;
 import com.balim.eticaret.business.response.GetAllAdminResponse;
 
 import com.balim.eticaret.business.response.GetByIdAdminResponse;
-import org.springframework.stereotype.Service;
 
 
 import java.util.List;
@@ -13,12 +12,10 @@ import java.util.List;
 public interface AdminService {
     void add(CreateAdminRequest createAdminRequest);
     void upDate(UpdateAdminRequest updateAdminRequest);
-    void delete (String adminName,String eMail);
+    void delete (int adminId);
 
-    static List<GetAllAdminResponse> getAll() {
-        return null;
-    }
+    List<GetAllAdminResponse> getAll();
 
-    List<GetByIdAdminResponse>getById( String adminName, String eMail);
+    List<GetByIdAdminResponse>getById( int adminId);
 
 }

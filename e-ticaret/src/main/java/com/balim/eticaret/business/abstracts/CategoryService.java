@@ -13,9 +13,7 @@ public interface CategoryService {
     void upDate(UpdateCategoryRequest createCategoryRequest);
     void delete(Long categoryId);
 
-    static List<GetAllCategoryResponse> getAll() {
-        return null;
-    }
+     List<GetAllCategoryResponse> getAll() ;
 
     List<GetByIdCategoryResponse>getById(Long categoryId);
 

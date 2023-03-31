@@ -10,7 +10,6 @@ import com.balim.eticaret.dataAccess.abstracts.CategoryRepository;
 import com.balim.eticaret.entitiy.Category;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,7 +38,7 @@ public class CategoryManager implements CategoryService {
         this.categoryRepository.deleteById(categoryId);
     }
 
-
+    @Override
     public List<GetAllCategoryResponse> getAll() {
         List<Category> categories =categoryRepository.findAll();
         List<GetAllCategoryResponse> getAllCategoryResponses = new ArrayList<GetAllCategoryResponse>();

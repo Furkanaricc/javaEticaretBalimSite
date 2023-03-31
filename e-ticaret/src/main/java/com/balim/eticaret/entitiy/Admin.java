@@ -17,6 +17,8 @@ import javax.persistence.Table;
 public class Admin {
     @Id
     @Column
+    int adminId;
+    @Column
     String adminName;
     @Column
     String Email;

@@ -9,9 +9,7 @@ import com.balim.eticaret.core.utilities.mappers.ModelMapperService;
 import com.balim.eticaret.dataAccess.abstracts.ProductsRepository;
 import com.balim.eticaret.entitiy.Product;
 import lombok.AllArgsConstructor;
-
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

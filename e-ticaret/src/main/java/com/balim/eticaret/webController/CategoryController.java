@@ -1,16 +1,14 @@
 package com.balim.eticaret.webController;
 
+import com.balim.eticaret.business.abstracts.AdminService;
 import com.balim.eticaret.business.abstracts.CategoryService;
-import com.balim.eticaret.business.request.CreateAdminRequest;
 import com.balim.eticaret.business.request.CreateCategoryRequest;
-import com.balim.eticaret.business.request.UpdateAdminRequest;
 import com.balim.eticaret.business.request.UpdateCategoryRequest;
+import com.balim.eticaret.business.response.GetAllAdminResponse;
 import com.balim.eticaret.business.response.GetAllCategoryResponse;
 import com.balim.eticaret.business.response.GetByIdCategoryResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.*;
 
@@ -25,7 +23,7 @@ public class CategoryController {
     }
     @GetMapping()
     List<GetAllCategoryResponse>getAll(){
-      return   CategoryService.getAll();
+        return categoryService.getAll();
     }
     @GetMapping("/{categoryId}")
     public GetByIdCategoryResponse getById(@PathVariable Long categoryId){

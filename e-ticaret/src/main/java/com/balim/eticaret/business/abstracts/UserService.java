@@ -4,7 +4,6 @@ import com.balim.eticaret.business.request.CreateUserRequest;
 import com.balim.eticaret.business.request.UpdateUserRequest;
 import com.balim.eticaret.business.response.GetAllUserResponse;
 import com.balim.eticaret.business.response.GetByIdUserResponse;
-
 import java.util.*;
 
 public interface UserService  {

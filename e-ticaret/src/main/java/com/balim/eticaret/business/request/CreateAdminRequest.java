@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateAdminRequest {
+
     @NotBlank
     @NotNull
     @Size(min=2,max=20)

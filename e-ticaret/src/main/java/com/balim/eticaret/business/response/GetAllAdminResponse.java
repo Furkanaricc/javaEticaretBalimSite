@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class GetAllAdminResponse {
-    private int id;
+    private int adminId;
     private String adminName;
+
 
 }
