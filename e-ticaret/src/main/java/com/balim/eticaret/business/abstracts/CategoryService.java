@@ -11,11 +11,12 @@ import java.util.*;
 public interface CategoryService {
     void add (CreateCategoryRequest createCategoryRequest);
     void upDate(UpdateCategoryRequest createCategoryRequest);
-    void delete(int categoryId,String categoryName);
+    void delete(Long categoryId);
 
     static List<GetAllCategoryResponse> getAll() {
         return null;
     }
 
-    List<GetByIdCategoryResponse>getById(int id,String categoryName);
+    List<GetByIdCategoryResponse>getById(Long categoryId);
+
 }

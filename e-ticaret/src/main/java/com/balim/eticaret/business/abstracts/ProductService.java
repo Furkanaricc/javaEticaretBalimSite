@@ -11,7 +11,7 @@ import java.util.*;
 public interface ProductService {
 
     void add(CreateProductRequest createProductRequest);
-    void upDate(UpdateProductRequest updateProductResponse);
+    void upDate(UpdateProductRequest updateProductRequest);
     void delete (int id);
 
 

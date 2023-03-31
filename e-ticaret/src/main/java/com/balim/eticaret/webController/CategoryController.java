@@ -28,8 +28,8 @@ public class CategoryController {
       return   CategoryService.getAll();
     }
     @GetMapping("/{categoryId}")
-    public GetByIdCategoryResponse getById(@PathVariable int categoryId,String categoryName){
-        return (GetByIdCategoryResponse) categoryService.getById(categoryId,categoryName);
+    public GetByIdCategoryResponse getById(@PathVariable Long categoryId){
+        return (GetByIdCategoryResponse) categoryService.getById(categoryId);
     }
 
     @PostMapping()
@@ -42,9 +42,9 @@ public class CategoryController {
         this.categoryService.upDate(updateCategoryRequest);
     }
     @DeleteMapping("/categoryId-name)")
-    public void delete(@PathVariable int categoryId,String categoryName){
+    public void delete(@PathVariable Long categoryId,String categoryName){
 
-        this.categoryService.delete(categoryId,categoryName);
+        this.categoryService.delete(categoryId);
     }
 
 }

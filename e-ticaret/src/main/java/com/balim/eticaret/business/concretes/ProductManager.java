@@ -5,12 +5,11 @@ import com.balim.eticaret.business.request.CreateProductRequest;
 import com.balim.eticaret.business.request.UpdateProductRequest;
 import com.balim.eticaret.business.response.GetAllProductResponse;
 import com.balim.eticaret.business.response.GetByIdProductResponse;
-import com.balim.eticaret.core.utilities.mappers.ModelMapperManager;
 import com.balim.eticaret.core.utilities.mappers.ModelMapperService;
 import com.balim.eticaret.dataAccess.abstracts.ProductsRepository;
 import com.balim.eticaret.entitiy.Product;
 import lombok.AllArgsConstructor;
-import org.hibernate.query.Query;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,32 +24,22 @@ public class ProductManager implements ProductService {
     private ModelMapperService modelMapperService;
 
 
-
     @Override
     public void add(CreateProductRequest createProductRequest) {
 
-        Product product = this.modelMapperService.forRequest().map(createProductRequest,Product.class);
+        Product product = this.modelMapperService.forRequest().map(createProductRequest, Product.class);
 
         this.productsRepository.save(product);
     }
 
-    @Override
-    public void upDate(UpdateProductRequest updateProductResponse) {
-
-    }
 
     @Override
-    public void delete(int id) {
+    public List<GetAllProductResponse> getAll() {
 
-    }
-
-    @Override
-    public List<GetAllProductResponse> getAll(){
-
-        List<Product> products= productsRepository.findAll();
-        List<GetAllProductResponse> getAllProductResponses = new ArrayList<GetAllProductResponse> ();
-        List<GetAllProductResponse> productResponse= (List<GetAllProductResponse>) products.stream().map(
-                product ->this.modelMapperService.forResponse().map(product,GetAllProductResponse.class))
+        List<Product> products = productsRepository.findAll();
+        List<GetAllProductResponse> getAllProductResponses = new ArrayList<GetAllProductResponse>();
+        List<GetAllProductResponse> productResponse = (List<GetAllProductResponse>) products.stream().map(
+                        product -> this.modelMapperService.forResponse().map(product, GetAllProductResponse.class))
                 .collect(Collectors.toList());
 
         return productResponse;
@@ -58,6 +47,22 @@ public class ProductManager implements ProductService {
 
     @Override
     public List<GetByIdProductResponse> getById(int id) {
-        return null;
+        Product product = this.productsRepository.findById(id).orElseThrow();
+        GetByIdProductResponse response =
+                this.modelMapperService.forResponse().map(product,GetByIdProductResponse.class);
+        return (List<GetByIdProductResponse>) response;
+    }
+
+    @Override
+    public void upDate(UpdateProductRequest updateProductRequest) {
+
+        Product product = this.modelMapperService.forRequest().map(updateProductRequest,Product.class);
+    this.productsRepository.save(product);
+    }
+
+    @Override
+    public void delete(int id) {
+        this.productsRepository.deleteById(id);
+
     }
 }
