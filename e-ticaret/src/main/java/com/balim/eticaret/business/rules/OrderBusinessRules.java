@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class OrderBusinessRules {
     private OrderRepository ordersRepository;
-    public void checkIfOrderExists(Integer id){
-        if(this.ordersRepository.existsByOrderId(id)){
+    public void checkIfOrderExists(Long orderNumber){
+        if(this.ordersRepository.existsByOrderNumber(orderNumber)){
             throw new BusinessException("Order id aynı olamaz");
         }
 

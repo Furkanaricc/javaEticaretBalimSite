@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category,Long> {
     //Aynı isimden ürün olup olmadığını kontrol eder.
-    boolean existsByCategotyName(String categoryName); //spring jpa keywords
+    boolean existsByCategoryName(String categoryName); //spring jpa keywords
 }

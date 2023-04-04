@@ -27,8 +27,8 @@ public class ProductManager implements ProductService {
     @Override
     public void add(CreateProductRequest createProductRequest) {
 
+
         this.productBusinessRules.checkIfProductExists(createProductRequest.getName());
-        
         Product product = this.modelMapperService.forRequest().map(createProductRequest, Product.class);
 
         this.productsRepository.save(product);

@@ -5,6 +5,7 @@ import com.balim.eticaret.business.request.CreateAdminRequest;
 import com.balim.eticaret.business.request.UpdateAdminRequest;
 import com.balim.eticaret.business.response.GetAllAdminResponse;
 import com.balim.eticaret.business.response.GetByIdAdminResponse;
+import com.balim.eticaret.business.rules.AdminBusinessRules;
 import com.balim.eticaret.core.utilities.mappers.ModelMapperService;
 import com.balim.eticaret.dataAccess.abstracts.AdminsRepository;
 import com.balim.eticaret.entitiy.Admin;
@@ -20,9 +21,11 @@ public class AdminManager implements AdminService {
 
     private AdminsRepository adminsRepository;
     private ModelMapperService modelMapperService;
+    private AdminBusinessRules adminBusinessRules;
 
     @Override
     public void add(CreateAdminRequest createAdminRequest) {
+        this.adminBusinessRules.checkIfAdminExists(createAdminRequest.getAdminName());
         Admin admin=this.modelMapperService.forRequest().map(createAdminRequest,Admin.class);
         this.adminsRepository.save(admin);
 

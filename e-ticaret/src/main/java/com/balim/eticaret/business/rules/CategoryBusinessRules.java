@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class CategoryBusinessRules {
     private CategoryRepository categoryRepository;
     public void checkIfCategoryExists(String categoryName){
-        if(this.categoryRepository.existsByCategotyName(categoryName)){
+        if(this.categoryRepository.existsByCategoryName(categoryName)){
             throw new BusinessException("Aynı isimde kategori oluşturulamaz.");
         }
     }

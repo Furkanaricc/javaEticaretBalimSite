@@ -5,6 +5,7 @@ import com.balim.eticaret.business.request.CreateOrderRequest;
 import com.balim.eticaret.business.request.UpdateOrderRequest;
 import com.balim.eticaret.business.response.GetAllOrderResponse;
 import com.balim.eticaret.business.response.GetByIdOrderResponse;
+import com.balim.eticaret.business.rules.OrderBusinessRules;
 import com.balim.eticaret.core.utilities.mappers.ModelMapperService;
 import com.balim.eticaret.dataAccess.abstracts.OrderRepository;
 import com.balim.eticaret.entitiy.Order;
@@ -21,10 +22,12 @@ public class OrderManager implements OrderService {
 
     private OrderRepository orderRepository;
     private ModelMapperService modelMapperService;
+    private OrderBusinessRules orderBusinessRules;
 
 
     @Override
     public void add(CreateOrderRequest createOrderRequest) {
+        this.orderBusinessRules.checkIfOrderExists(createOrderRequest.getOrderNumber());
     Order order = this.modelMapperService.forRequest().map(createOrderRequest,Order.class);
     this.orderRepository.save(order);
     }

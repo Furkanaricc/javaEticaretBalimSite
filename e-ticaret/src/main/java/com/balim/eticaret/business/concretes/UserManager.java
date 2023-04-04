@@ -5,6 +5,8 @@ import com.balim.eticaret.business.request.CreateUserRequest;
 import com.balim.eticaret.business.request.UpdateUserRequest;
 import com.balim.eticaret.business.response.GetAllUserResponse;
 import com.balim.eticaret.business.response.GetByIdUserResponse;
+import com.balim.eticaret.business.rules.PasswordChecker;
+import com.balim.eticaret.business.rules.UserBusinessRules;
 import com.balim.eticaret.core.utilities.mappers.ModelMapperService;
 import com.balim.eticaret.dataAccess.abstracts.UsersRepository;
 import com.balim.eticaret.entitiy.User;
@@ -21,9 +23,14 @@ public class UserManager implements UserService {
 
     private ModelMapperService modelMapperService;
     private UsersRepository usersRepository;
+    private UserBusinessRules userBusinessRules;
+    private PasswordChecker passwordChecker;
+
 
     @Override
     public void add(CreateUserRequest createUserRequest) {
+
+        this.userBusinessRules.checkIfUserExists(createUserRequest.getEMail());
         User user = this.modelMapperService.forRequest().map(createUserRequest,User.class);
 this.usersRepository.save(user);
     }
@@ -36,6 +43,7 @@ this.usersRepository.save(user);
 
     @Override
     public void upDate(UpdateUserRequest updateUserRequest) {
+
         User user=this.modelMapperService.forRequest().map(updateUserRequest,User.class);
         this.usersRepository.save(user);
 
