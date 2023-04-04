@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Table(name="Category")
 @Data
@@ -18,6 +19,14 @@ public class Category {
     Long categoryId;
     @Column
     String categoryName;
+
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private List<Product> products;
+
+
 
 
 

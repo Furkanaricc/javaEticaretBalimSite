@@ -5,6 +5,7 @@ import com.balim.eticaret.business.request.CreateCategoryRequest;
 import com.balim.eticaret.business.request.UpdateCategoryRequest;
 import com.balim.eticaret.business.response.GetAllCategoryResponse;
 import com.balim.eticaret.business.response.GetByIdCategoryResponse;
+import com.balim.eticaret.business.rules.CategoryBusinessRules;
 import com.balim.eticaret.core.utilities.mappers.ModelMapperService;
 import com.balim.eticaret.dataAccess.abstracts.CategoryRepository;
 import com.balim.eticaret.entitiy.Category;
@@ -19,9 +20,13 @@ import java.util.stream.Collectors;
 public class CategoryManager implements CategoryService {
     private CategoryRepository categoryRepository;
     private ModelMapperService modelMapperService;
+    private CategoryBusinessRules categoryBusinessRules;
 
     @Override
     public void add(CreateCategoryRequest createCategoryRequest) {
+        
+        this.categoryBusinessRules.checkIfCategoryExists(createCategoryRequest.getCategoryName());
+
          Category category= this.modelMapperService.forRequest().map(createCategoryRequest,Category.class);
          this.categoryRepository.save(category);
 

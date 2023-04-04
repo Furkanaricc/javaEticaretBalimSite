@@ -5,6 +5,7 @@ import com.balim.eticaret.business.request.CreateProductRequest;
 import com.balim.eticaret.business.request.UpdateProductRequest;
 import com.balim.eticaret.business.response.GetAllProductResponse;
 import com.balim.eticaret.business.response.GetByIdProductResponse;
+import com.balim.eticaret.business.rules.ProductBusinessRules;
 import com.balim.eticaret.core.utilities.mappers.ModelMapperService;
 import com.balim.eticaret.dataAccess.abstracts.ProductsRepository;
 import com.balim.eticaret.entitiy.Product;
@@ -20,11 +21,14 @@ public class ProductManager implements ProductService {
 
     private ProductsRepository productsRepository;
     private ModelMapperService modelMapperService;
+    private ProductBusinessRules productBusinessRules;
 
 
     @Override
     public void add(CreateProductRequest createProductRequest) {
 
+        this.productBusinessRules.checkIfProductExists(createProductRequest.getName());
+        
         Product product = this.modelMapperService.forRequest().map(createProductRequest, Product.class);
 
         this.productsRepository.save(product);

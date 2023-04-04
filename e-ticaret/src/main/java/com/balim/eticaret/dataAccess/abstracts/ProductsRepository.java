@@ -10,4 +10,5 @@ public interface ProductsRepository extends JpaRepository <Product,Integer> {
     //Aynı isimden ürün olup olmadığını kontrol eder.
     boolean existsByName(String name); //spring jpa keywords
 
+
 }

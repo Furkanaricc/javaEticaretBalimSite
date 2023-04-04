@@ -7,5 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UsersRepository extends JpaRepository<User,Integer> {
-    boolean existsByUserId(Long id); //spring jpa keywords
+    boolean existsByUserId(Long id,String eMail); //spring jpa keywords
+
 }

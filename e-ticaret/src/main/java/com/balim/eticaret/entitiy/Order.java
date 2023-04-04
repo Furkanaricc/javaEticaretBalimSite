@@ -19,9 +19,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name="productId")
     Product product;
-   @Column
+    @Column
     int piece;
-   @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "address")
     User user;
     @Column
