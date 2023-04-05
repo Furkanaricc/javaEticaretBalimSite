@@ -11,20 +11,32 @@ import com.balim.eticaret.core.utilities.mappers.ModelMapperService;
 import com.balim.eticaret.dataAccess.abstracts.UsersRepository;
 import com.balim.eticaret.entitiy.User;
 import lombok.AllArgsConstructor;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Service
 @AllArgsConstructor
-public class UserManager implements UserService {
+public class UserManager implements UserService,PasswordChecker {
 
     private ModelMapperService modelMapperService;
     private UsersRepository usersRepository;
     private UserBusinessRules userBusinessRules;
-    private PasswordChecker passwordChecker;
+    //private PasswordChecker passwordChecker;
+
+
+    /*public static boolean checkPassword(String enteredPassword, String userPassword) {
+        String hashedPassword = DigestUtils.sha256Hex(enteredPassword);
+        return hashedPassword.equals(userPassword);
+    }*/
+
+
+
+
 
 
     @Override
@@ -67,5 +79,12 @@ this.usersRepository.save(user);
         this.modelMapperService.forResponse().map(user,GetByIdUserResponse.class);
 
         return (List<GetByIdUserResponse>) response;
+    }
+
+    @Override
+    public boolean checkIfExistPassword(String enteredPassword, String password) {
+        String hashedPassword = DigestUtils.sha256Hex(enteredPassword);
+        return hashedPassword.equals(password);
+
     }
 }

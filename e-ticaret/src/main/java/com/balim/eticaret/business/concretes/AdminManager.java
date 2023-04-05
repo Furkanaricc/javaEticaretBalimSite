@@ -6,10 +6,12 @@ import com.balim.eticaret.business.request.UpdateAdminRequest;
 import com.balim.eticaret.business.response.GetAllAdminResponse;
 import com.balim.eticaret.business.response.GetByIdAdminResponse;
 import com.balim.eticaret.business.rules.AdminBusinessRules;
+import com.balim.eticaret.business.rules.PasswordChecker;
 import com.balim.eticaret.core.utilities.mappers.ModelMapperService;
 import com.balim.eticaret.dataAccess.abstracts.AdminsRepository;
 import com.balim.eticaret.entitiy.Admin;
 import lombok.AllArgsConstructor;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class AdminManager implements AdminService {
+public class AdminManager implements AdminService, PasswordChecker {
 
     private AdminsRepository adminsRepository;
     private ModelMapperService modelMapperService;
@@ -62,5 +64,11 @@ public class AdminManager implements AdminService {
 
 
         return (List<GetByIdAdminResponse>) response;
+    }
+
+    @Override
+    public boolean checkIfExistPassword(String enteredPassword, String password) {
+        String hashedPassword = DigestUtils.sha256Hex(enteredPassword);
+        return hashedPassword.equals(password);
     }
 }

@@ -5,14 +5,16 @@ import lombok.AllArgsConstructor;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
-@Service
+/*@Service
 @AllArgsConstructor
 public class PasswordChecker {
     private OrderRepository ordersRepository;
 
-    public static boolean checkIfExistsPassword(String enteredPassword, String storedPassword) {
+    public static boolean checkPassword(String enteredPassword, String userPassword) {
         String hashedPassword = DigestUtils.sha256Hex(enteredPassword);
-        return hashedPassword.equals(storedPassword);
+        return hashedPassword.equals(userPassword);
     }
-
+}*/
+public interface PasswordChecker{
+    boolean checkIfExistPassword(String enteredPassword,String password);
 }

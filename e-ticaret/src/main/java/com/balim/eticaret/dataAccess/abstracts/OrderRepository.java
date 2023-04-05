@@ -11,4 +11,5 @@ import javax.validation.constraints.Size;
 @Repository
 public interface OrderRepository extends JpaRepository<Order,Integer> {
     boolean existsByOrderNumber(Long id);
+
 }
